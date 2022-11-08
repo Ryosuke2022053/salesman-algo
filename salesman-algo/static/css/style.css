@@ -1,0 +1,27 @@
+.input_item ul li {
+	list-style-type: none;
+	font-size: 21px;
+	margin: 0 0 22px 0;
+}
+.input_item ul li input[type="checkbox"]{
+	width: 25px;
+	height: 25px;
+	margin: -4px 5px 0 0;
+	display:inline-block;
+	vertical-align: middle;
+}
+.input_item ul li label{
+	display:inline-block;
+	vertical-align:middle;
+	line-height: 20px;
+}
+.input_item ul li.locked{
+	opacity: 0.75;
+	color: #aaa;
+}
+
+#btn1 {
+	background: #fd9535;
+	font-weight: bold;
+	padding: 0.5em 1em;
+  }

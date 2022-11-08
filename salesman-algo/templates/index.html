@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>最適ルートリコメンドシステム</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+  </head>
+  <body>
+    <h1 class="index_text">最適ルートリコメンドシステム</h1>
+    <h2>選んだスポットと緯度経度表</h2>
+    <table class="index_table">
+      <thead class="page">
+          <tr class="index_tr">
+              {% for i in header: %}
+              <th class="index_th" scope="col">{{ i }}</th>
+              {% endfor %}
+          </tr>
+      </thead>
+      <tbody>
+          {% for i in record: %}
+          <tr class="index_tr">
+              {% for j in i: %}
+              <td class="index_td">{{ j }}</td>
+              {% endfor %}
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+    <!-- <select> -->
+      <h2>おすすめルート</h2>
+      <p>現在地</p>
+      {% for route in route_list %}
+        <!-- <br> -->
+        <p>↓</p>
+        <!-- <br> -->
+        <p>{{ route }}</p>
+      {% endfor %}
+    <!-- </select> -->
+    <h2>マップ</h2>
+    <iframe src="{{ url_for('show_map') }}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  </body>
+</html>

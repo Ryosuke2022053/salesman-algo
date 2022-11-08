@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?ver=1.11.3'></script>
+        <title>最適ルートリコメンドシステム</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+        <!-- <link rel="stylesheet" type="text/javascript" href="{{ url_for('static',filename='javascript/style.js') }}"> -->
+    </head>
+    <body>
+        <h1 class="index_text">最適ルートリコメンドシステム
+        </h1>
+            <legend>行く予定の観光地を選択してください</legend>
+            <p id="p3">GPS自動取得中</p>
+            <form action="/index" method="post" name="chk_ctl">
+                <label><input type="text" class="chk" name="hage[]" value="" id="p4">現在緯度</label>
+                <br /><label><input type="text" class="chk" name="hage[]" value="" id="p5">現在軽度</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="アクトシティ浜松" id="">アクトシティ浜松</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="浜松城">浜松城</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="弁天島">弁天島</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="新居関跡">新居関跡</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="佐久間ダム">佐久間ダム</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="浜名湖パルパル">浜名湖パルパル</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="竜ヶ岩洞">竜ヶ岩洞</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="はままつフラワーパーク">はままつフラワーパーク</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="中田島砂丘">中田島砂丘</label>
+                <br /><label><input type="checkbox" class="chk" name="hage[]" value="さわやか富塚店">さわやか富塚店</label>
+                <br /><br />
+                <button type="submit" id="btn1">-----完了-----</button>
+            </form>
+        <script>
+            $(function(){
+            // 初期状態のボタンは無効
+            $("#btn1").prop("disabled", true);
+                // チェックボックスの状態が変わったら（クリックされたら）
+                $("input[type='checkbox']").on('change', function () {
+                    // チェックされているチェックボックスの数
+                    if ($(".chk:checked").length >= 3) {
+                    // ボタン有効
+                    $("#btn1").prop("disabled", false);
+                    } else {
+                    // ボタン無効
+                    $("#btn1").prop("disabled", true);
+                    }
+                });
+            });
+            window.onload = getGPS
+            function getGPS() {
+                navigator.geolocation.getCurrentPosition(Getter);
+            }
+
+            function Getter(position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                document.getElementById("p4").value = lat;
+                document.getElementById("p5").value = lng;
+                document.getElementById('p3').innerHTML = "GPS取得済み"
+            }
+        </script>
+    </body>
+</html>
